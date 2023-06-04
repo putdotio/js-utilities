@@ -1,4 +1,4 @@
-name: ci
+name: Lint, test, and build the package
 on: [push]
 jobs:
   build:
