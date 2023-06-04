@@ -10,13 +10,10 @@
   </p>
 
   <p>
-    <a href="https://github.com/putdotio/putio.js/actions/workflows/push.yml"><img
-        src="https://img.shields.io/github/actions/workflow/status/putdotio/putio.js/push.yml?branch=master"
-        alt="Build Status"></a>
-    <a href="https://coveralls.io/github/putdotio/putio.js?branch=master"><img
-        src="https://coveralls.io/repos/github/putdotio/putio.js/badge.svg?branch=master" alt="Coverage Status"></a>
-    <img src="https://img.shields.io/npm/v/@putdotio/api-client" alt="npm (scoped)">
-    <img src="https://img.shields.io/bundlephobia/minzip/@putdotio/api-client" alt="npm bundle size (scoped)">
-    <img src="https://img.shields.io/github/license/putdotio/putio.js" alt="GitHub">
+    <a href="https://github.com/putdotio/js-utilities/actions/workflows/main.yml"><img src="https://img.shields.io/github/actions/workflow/status/putdotio/js-utilities/main.yml?branch=main" alt="Build Status"></a>
+   <a href='https://coveralls.io/github/putdotio/js-utilities?branch=main'><img src='https://coveralls.io/repos/github/putdotio/js-utilities/badge.svg?branch=main' alt='Coverage Status' /></a>
+    <img src="https://img.shields.io/npm/v/@putdotio/utilities" alt="npm (scoped)">
+    <img src="https://img.shields.io/bundlephobia/minzip/@putdotio/utilities" alt="npm bundle size (scoped)">
+    <img src="https://img.shields.io/github/license/putdotio/js-utilities" alt="GitHub">
   </p>
 </div>

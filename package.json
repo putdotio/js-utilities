@@ -1,6 +1,6 @@
 {
   "name": "@putdotio/utilities",
-  "version": "0.1.0",
+  "version": "1.0.3",
   "license": "MIT",
   "author": "put.io <ui@put.io>",
   "main": "dist/index.js",
@@ -33,7 +33,6 @@
   "jest": {
     "testEnvironment": "node"
   },
-  "peerDependencies": {},
   "engines": {
     "node": ">=12"
   },
@@ -62,5 +61,8 @@
     "bytes": "^3.1.2",
     "es6-error": "^4.1.1",
     "timeago.js": "^4.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
