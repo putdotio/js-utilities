@@ -1,6 +1,6 @@
 {
   "name": "@putdotio/utilities",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "license": "MIT",
   "author": "put.io <ui@put.io>",
   "main": "dist/index.js",
