@@ -1,6 +1,3 @@
-export const sum = (a: number, b: number) => {
-  if ('development' === process.env.NODE_ENV) {
-    console.log('dev only output');
-  }
-  return a + b;
-};
+export { default as ExtendableError } from 'es6-error';
+export * from './localized-error/localizeError';
+export * from './localized-error/LocalizedError';
