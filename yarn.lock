@@ -1458,10 +1458,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@putdotio/api-client@^8.36.1":
-  version "8.36.1"
-  resolved "https://registry.npmjs.org/@putdotio/api-client/-/api-client-8.36.1.tgz"
-  integrity sha512-eNZUv590cWVUqUjYiwsNmLO+fSK/7EIKA+MVdFo1DZiA/1OmZOuMAlkLaJAQNsuwDn6JLzAkJC8WkANtvK8XVg==
+"@putdotio/api-client@8.37.0":
+  version "8.37.0"
+  resolved "https://registry.yarnpkg.com/@putdotio/api-client/-/api-client-8.37.0.tgz#bb7b1925d319e4c7829e503fff3ffa207a616126"
+  integrity sha512-eHYxjkRWy6uUOvfyP3t5hArTnepUNr60S/D+hwpC8pudrJ8C4xvzI9hNwE6ngX5shGl2YMtCQctW9Op+uKkRog==
   dependencies:
     axios "^0.21.1"
     event-emitter "^0.3.5"
