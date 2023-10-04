@@ -6,6 +6,7 @@ describe('lib', () => {
       {
         "ExtendableError": [Function],
         "LocalizedError": [Function],
+        "SuspenseError": [Function],
         "createLocalizeError": [Function],
         "isErrorLocalizer": [Function],
         "toHumanFileSize": [Function],
