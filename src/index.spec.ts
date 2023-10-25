@@ -13,6 +13,8 @@ describe('lib', () => {
         "formatDate": [Function],
         "getUnixTimestamp": [Function],
         "isErrorLocalizer": [Function],
+        "secondsToDuration": [Function],
+        "secondsToReadableDuration": [Function],
         "toHumanFileSize": [Function],
         "toTimeAgo": [Function],
       }
