@@ -29,7 +29,7 @@ export const daysDiff = (
 ) => {
   const day1 = dayjs(ensureUTC(date1)).startOf('day');
   const day2 = dayjs(ensureUTC(date2)).startOf('day');
-  return day2.diff(day1, 'day');
+  return Math.abs(day2.diff(day1, 'day'));
 };
 
 export const getUnixTimestamp = (date: UTCTimestamp) => {

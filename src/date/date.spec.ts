@@ -32,5 +32,9 @@ describe('date', () => {
       expect(daysDiff('2020-02-05T16:13:28')).toBe(0);
       expect(daysDiff('2020-02-04T06:51:43')).toBe(1);
     });
+
+    it('returns absolute value', () => {
+      expect(daysDiff('2020-02-06T16:13:28')).toBe(1);
+    });
   });
 });
