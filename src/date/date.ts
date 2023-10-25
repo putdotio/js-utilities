@@ -7,7 +7,7 @@ dayjs.extend(relativeTime);
 
 type UTCTimestamp = string;
 
-export const ensureUTC = (date: string): UTCTimestamp => {
+export const ensureUTC = (date: string = ''): UTCTimestamp => {
   if (!date.endsWith('Z')) {
     date = `${date}Z`;
   }
@@ -15,16 +15,16 @@ export const ensureUTC = (date: string): UTCTimestamp => {
   return date;
 };
 
-export const toTimeAgo = (date: UTCTimestamp) => {
+export const toTimeAgo = (date: UTCTimestamp = '') => {
   return dayjs(ensureUTC(date)).fromNow();
 };
 
-export const formatDate = (date: UTCTimestamp, dateFormat = 'LL') => {
+export const formatDate = (date: UTCTimestamp = '', dateFormat = 'LL') => {
   return dayjs(new Date(ensureUTC(date))).format(dateFormat);
 };
 
 export const daysDiff = (
-  date1: UTCTimestamp,
+  date1: UTCTimestamp = new Date().toISOString(),
   date2: UTCTimestamp = new Date().toISOString()
 ) => {
   const day1 = dayjs(ensureUTC(date1)).startOf('day');
@@ -32,6 +32,6 @@ export const daysDiff = (
   return Math.abs(day2.diff(day1, 'day'));
 };
 
-export const getUnixTimestamp = (date: UTCTimestamp) => {
+export const getUnixTimestamp = (date: UTCTimestamp = '') => {
   return dayjs(ensureUTC(date)).unix();
 };
