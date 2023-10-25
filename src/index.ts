@@ -5,3 +5,4 @@ export * from './errors';
 export * from './file/file';
 export * from './localized-error/LocalizedError';
 export * from './localized-error/localizeError';
+export * from './string/string';

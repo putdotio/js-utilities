@@ -9,6 +9,7 @@ describe('lib', () => {
         "SuspenseError": [Function],
         "createLocalizeError": [Function],
         "daysDiff": [Function],
+        "dotsToSpaces": [Function],
         "ensureUTC": [Function],
         "formatDate": [Function],
         "getUnixTimestamp": [Function],
@@ -17,6 +18,8 @@ describe('lib', () => {
         "secondsToReadableDuration": [Function],
         "toHumanFileSize": [Function],
         "toTimeAgo": [Function],
+        "truncate": [Function],
+        "truncateMiddle": [Function],
       }
     `);
   });
