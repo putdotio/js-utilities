@@ -24,8 +24,13 @@ describe('date', () => {
   });
 
   describe('daysDiff', () => {
+    beforeAll(() => {
+      jest.useFakeTimers().setSystemTime(new Date('2020-02-05'));
+    });
+
     it('calculates the difference between two dates, in calendar days', () => {
-      expect(daysDiff('2023-06-03T18:30:03Z')).toBe(1);
+      expect(daysDiff('2020-02-05T16:13:28')).toBe(0);
+      expect(daysDiff('2020-02-04T06:51:43')).toBe(1);
     });
   });
 });

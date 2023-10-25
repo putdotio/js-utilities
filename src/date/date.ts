@@ -27,9 +27,9 @@ export const daysDiff = (
   date1: UTCTimestamp,
   date2: UTCTimestamp = new Date().toISOString()
 ) => {
-  return Math.ceil(
-    Math.abs(dayjs(ensureUTC(date1)).diff(ensureUTC(date2), 'day', true))
-  );
+  const day1 = dayjs(ensureUTC(date1)).startOf('day');
+  const day2 = dayjs(ensureUTC(date2)).startOf('day');
+  return day2.diff(day1, 'day');
 };
 
 export const getUnixTimestamp = (date: UTCTimestamp) => {
