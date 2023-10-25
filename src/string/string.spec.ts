@@ -8,6 +8,10 @@ describe('string', () => {
   });
 
   describe('truncate', () => {
+    it('should skip truncation if string is not long enough', () => {
+      expect(truncate('abcdef', { length: 6 })).toEqual('abcdef');
+    });
+
     it('should truncate a string', () => {
       expect(truncate('abcdef', { length: 3 })).toEqual('abc...');
     });

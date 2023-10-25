@@ -10,6 +10,11 @@ export const truncate = (
   }
 ) => {
   const { length, ellipsis = '...' } = options;
+
+  if (input.length <= length) {
+    return input;
+  }
+
   return input.slice(0, length) + ellipsis;
 };
 
