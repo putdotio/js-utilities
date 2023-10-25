@@ -11,6 +11,7 @@ describe('lib', () => {
         "daysDiff": [Function],
         "ensureUTC": [Function],
         "formatDate": [Function],
+        "getUnixTimestamp": [Function],
         "isErrorLocalizer": [Function],
         "toHumanFileSize": [Function],
         "toTimeAgo": [Function],

@@ -1,5 +1,9 @@
-import { format as timeAgo } from 'timeago.js';
-import { differenceInCalendarDays, format } from 'date-fns';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+
+dayjs.extend(localizedFormat);
+dayjs.extend(relativeTime);
 
 type UTCTimestamp = string;
 
@@ -11,16 +15,23 @@ export const ensureUTC = (date: string): UTCTimestamp => {
   return date;
 };
 
-export const toTimeAgo = (date: UTCTimestamp) => timeAgo(ensureUTC(date));
+export const toTimeAgo = (date: UTCTimestamp) => {
+  return dayjs(ensureUTC(date)).fromNow();
+};
 
-export const formatDate = (date: UTCTimestamp, dateFormat = 'LLLL d, yyyy') =>
-  format(new Date(ensureUTC(date)), dateFormat);
+export const formatDate = (date: UTCTimestamp, dateFormat = 'LL') => {
+  return dayjs(new Date(ensureUTC(date))).format(dateFormat);
+};
 
 export const daysDiff = (
   date1: UTCTimestamp,
   date2: UTCTimestamp = new Date().toISOString()
-) =>
-  differenceInCalendarDays(
-    new Date(ensureUTC(date1)),
-    new Date(ensureUTC(date2))
+) => {
+  return Math.ceil(
+    Math.abs(dayjs(ensureUTC(date1)).diff(ensureUTC(date2), 'day', true))
   );
+};
+
+export const getUnixTimestamp = (date: UTCTimestamp) => {
+  return dayjs(ensureUTC(date)).unix();
+};

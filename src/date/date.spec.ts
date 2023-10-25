@@ -1,4 +1,4 @@
-import { toTimeAgo, ensureUTC, formatDate } from './date';
+import { toTimeAgo, ensureUTC, formatDate, daysDiff } from './date';
 
 describe('date', () => {
   beforeAll(() => {
@@ -20,6 +20,12 @@ describe('date', () => {
   describe('formatDate', () => {
     it('formats a date', () => {
       expect(formatDate('2023-06-03T18:30:03Z')).toBe('June 3, 2023');
+    });
+  });
+
+  describe('daysDiff', () => {
+    it('calculates the difference between two dates, in calendar days', () => {
+      expect(daysDiff('2023-06-03T18:30:03Z')).toBe(1);
     });
   });
 });
