@@ -3,7 +3,7 @@ import { LocalizedError, LocalizedErrorParams } from './LocalizedError';
 
 export type LocalizeFn<E> = (
   error: E
-) => Pick<LocalizedErrorParams, 'message' | 'recoverySuggestion'>;
+) => Pick<LocalizedErrorParams, 'message' | 'recoverySuggestion' | 'meta'>;
 
 export type APIErrorByStatusCodeLocalizer = {
   kind: 'api_status_code';
