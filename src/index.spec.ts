@@ -6,9 +6,9 @@ describe('lib', () => {
       {
         "ExtendableError": [Function],
         "LocalizedError": [Function],
-        "SuspenseError": [Function],
         "createLocalizeError": [Function],
         "daysDiff": [Function],
+        "daysDiffFromNow": [Function],
         "dotsToSpaces": [Function],
         "ensureUTC": [Function],
         "formatDate": [Function],
