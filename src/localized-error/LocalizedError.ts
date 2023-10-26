@@ -28,6 +28,7 @@ export type LocalizedErrorParams = {
   message: string;
   recoverySuggestion: LocalizedErrorRecoverySuggestion;
   underlyingError: unknown;
+  meta?: Record<string, unknown>;
 };
 
 export class LocalizedError extends ExtendableError {
@@ -37,10 +38,13 @@ export class LocalizedError extends ExtendableError {
 
   underlyingError: unknown;
 
+  meta: Record<string, unknown>;
+
   constructor(params: LocalizedErrorParams) {
     super(params.message);
     this.message = params.message;
     this.recoverySuggestion = params.recoverySuggestion;
     this.underlyingError = params.underlyingError;
+    this.meta = params.meta || {};
   }
 }
