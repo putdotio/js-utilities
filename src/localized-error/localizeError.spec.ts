@@ -25,7 +25,6 @@ describe('localizeError', () => {
 
   it('should return a LocalizedError', () => {
     const localizeError = createLocalizeError([genericErrorLocalizer]);
-
     expect(localizeError(undefined)).toBeInstanceOf(LocalizedError);
   });
 
@@ -107,6 +106,26 @@ describe('localizeError', () => {
 
     error.foo = 'baz';
     expect(localizeError(error)).toBeInstanceOf(LocalizedError);
+  });
+
+  it('should throw an error if no generic localizer is found', () => {
+    const error = { foo: 'baz' };
+
+    const localizeError = createLocalizeError([
+      {
+        kind: 'match_condition',
+        match: (error: { foo: string }) => error.foo === 'bar',
+        localize: () => ({
+          message: 'message',
+          recoverySuggestion: {
+            type: 'instruction',
+            description: 'description',
+          },
+        }),
+      },
+    ]);
+
+    expect(() => localizeError(error)).toThrowError();
   });
 });
 
