@@ -23,14 +23,22 @@ describe('duration', () => {
       expect(secondsToDuration(444444)).toBe('05:03:27:24');
     });
 
+    it('formats hours (more than 24) as dd:HH:mm:ss', () => {
+      expect(secondsToDuration(86460)).toBe('01:00:01:00');
+    });
+
     it('handles decimal duration inputs', () => {
       expect(secondsToDuration(2565.568)).toBe('42:45');
     });
   });
 
   describe('secondsToReadableDuration', () => {
+    it('handles weird input', () => {
+      expect(secondsToReadableDuration(-500)).toBe('N/A');
+    });
+
     it('handles null input', () => {
-      expect(secondsToDuration(null)).toBe('00:00');
+      expect(secondsToReadableDuration(null)).toBe('N/A');
     });
 
     it('formats seconds as s', () => {
@@ -44,6 +52,10 @@ describe('duration', () => {
 
     it('formats hours as HH mm', () => {
       expect(secondsToReadableDuration(44444)).toBe('12h 21m');
+    });
+
+    it('formats hours (more than 24) as dd HH', () => {
+      expect(secondsToReadableDuration(86400)).toBe('1d');
     });
 
     it('formats hours (more than 24) as dd HH', () => {
