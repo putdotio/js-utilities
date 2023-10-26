@@ -77,7 +77,7 @@ describe('date', () => {
     });
 
     it('handles empty input', () => {
-      expect(daysDiffFromNow()).toBe('N/A');
+      expect(daysDiffFromNow()).toBe(0);
     });
   });
 

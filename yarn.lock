@@ -2726,7 +2726,7 @@ domexception@^4.0.0:
 
 dts-cli@^2.0.3:
   version "2.0.3"
-  resolved "https://registry.npmjs.org/dts-cli/-/dts-cli-2.0.3.tgz"
+  resolved "https://registry.yarnpkg.com/dts-cli/-/dts-cli-2.0.3.tgz#6a1b4bfca53f1f25404233027fca41f4def68b5b"
   integrity sha512-OEgH0AJLu/ey/bHwb+EBXnCm5pLxmq4WMdzHFzYqsJarPqCjMOK15MRUAIJskHoa7VemOqM9frf24LH3wiQ+/w==
   dependencies:
     "@babel/core" "^7.20.5"

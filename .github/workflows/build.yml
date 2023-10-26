@@ -1,35 +1,25 @@
-name: Lint, test, and build the package
+name: Lint, test, and build
+
 on: [push]
+
 jobs:
   build:
-    name: Build, lint, and test on Node ${{ matrix.node }} and ${{ matrix.os }}
-
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        node: ['18.16.0']
-        os: [ubuntu-latest]
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Use Node ${{ matrix.node }}
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
+          node-version-file: '.nvmrc'
 
-      - name: Install deps and build (with cache)
-        uses: bahmutov/npm-install@v1
+      - uses: bahmutov/npm-install@v1
 
-      - name: Lint
-        run: yarn lint
+      -run: yarn lint
 
-      - name: Test
-        run: yarn test --coverage
+      - run: yarn test --coverage
 
-      - name: Coveralls
-        uses: coverallsapp/github-action@v2
+      - uses: coverallsapp/github-action@v2
 
-      - name: Build
-        run: yarn build
+      - run: yarn build

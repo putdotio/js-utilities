@@ -41,7 +41,7 @@ export const daysDiff = (date1: unknown, date2: unknown) => {
 
 export const daysDiffFromNow = (date: unknown = null) => {
   if (!date) {
-    return 'N/A';
+    return 0;
   }
 
   return daysDiff(date, new Date());
