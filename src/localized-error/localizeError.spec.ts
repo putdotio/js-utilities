@@ -33,6 +33,7 @@ describe('localizeError', () => {
       status_code: 400,
       error_type: 'test',
       error_message: 'test',
+      extra: {},
     });
 
     const localizeError = createLocalizeError([
@@ -61,6 +62,7 @@ describe('localizeError', () => {
       status_code: 400,
       error_type: 'test',
       error_message: 'test',
+      extra: {},
     });
 
     const localizeError = createLocalizeError([
