@@ -1,5 +1,10 @@
-import { IPutioAPIClientError, isPutioAPIError } from '@putdotio/api-client';
-import { LocalizedError, LocalizedErrorParams } from './LocalizedError';
+import {
+  type IPutioAPIClientError,
+  type IPutioAPIClientErrorData,
+  isPutioAPIError,
+  isPutioAPIErrorResponse,
+} from '@putdotio/api-client';
+import { LocalizedError, type LocalizedErrorParams } from './LocalizedError';
 
 export type LocalizeFn<E> = (
   error: E
@@ -8,13 +13,13 @@ export type LocalizeFn<E> = (
 export type APIErrorByStatusCodeLocalizer = {
   kind: 'api_status_code';
   status_code: number;
-  localize: LocalizeFn<IPutioAPIClientError>;
+  localize: LocalizeFn<IPutioAPIClientError | IPutioAPIClientErrorData>;
 };
 
 export type APIErrorByErrorTypeLocalizer = {
   kind: 'api_error_type';
   error_type: string;
-  localize: LocalizeFn<IPutioAPIClientError>;
+  localize: LocalizeFn<IPutioAPIClientError | IPutioAPIClientErrorData>;
 };
 
 export type MatchConditionLocalizer<E> = {
@@ -51,10 +56,14 @@ export const createLocalizeError =
     const localizers = [...scopedLocalizers, ...globalLocalizers];
 
     // API ERROR
-    if (isPutioAPIError(error)) {
+    if (isPutioAPIError(error) || isPutioAPIErrorResponse(error)) {
       const byErrorType = localizers.find(
         (l): l is APIErrorByErrorTypeLocalizer => {
           if (l.kind === 'api_error_type') {
+            if (isPutioAPIErrorResponse(error)) {
+              return l.error_type === error.error_type;
+            }
+
             return l.error_type === error.data.error_type;
           }
 
@@ -72,6 +81,10 @@ export const createLocalizeError =
       const byStatusCode = localizers.find(
         (l): l is APIErrorByStatusCodeLocalizer => {
           if (l.kind === 'api_status_code') {
+            if (isPutioAPIErrorResponse(error)) {
+              return l.status_code === error.status_code;
+            }
+
             return l.status_code === error.data.status_code;
           }
 

@@ -52,9 +52,11 @@ describe('localizeError', () => {
     ]);
 
     expect(localizeError(error)).toBeInstanceOf(LocalizedError);
+    expect(localizeError(error.data)).toBeInstanceOf(LocalizedError);
 
     error.data.status_code = 401;
     expect(localizeError(error)).toBeInstanceOf(LocalizedError);
+    expect(localizeError(error.data)).toBeInstanceOf(LocalizedError);
   });
 
   it('shoud localize api errors by error_type', () => {
@@ -81,9 +83,11 @@ describe('localizeError', () => {
     ]);
 
     expect(localizeError(error)).toBeInstanceOf(LocalizedError);
+    expect(localizeError(error.data)).toBeInstanceOf(LocalizedError);
 
     error.data.error_type = 'test_new';
     expect(localizeError(error)).toBeInstanceOf(LocalizedError);
+    expect(localizeError(error.data)).toBeInstanceOf(LocalizedError);
   });
 
   it('shoud localize api errors by match_condition', () => {
