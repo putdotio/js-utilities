@@ -1,6 +1,6 @@
 {
   "name": "@putdotio/utilities",
-  "version": "1.13.0",
+  "version": "1.14.0",
   "license": "MIT",
   "author": "put.io <ui@put.io>",
   "main": "dist/index.js",
@@ -47,7 +47,7 @@
     }
   ],
   "devDependencies": {
-    "@putdotio/api-client": "8.40.0",
+    "@putdotio/api-client": "^8.46.0",
     "@size-limit/preset-small-lib": "^8.2.4",
     "@tsconfig/recommended": "^1.0.2",
     "@types/bytes": "^3.1.1",
@@ -65,7 +65,7 @@
     "truncate-middle": "^1.0.6"
   },
   "peerDependencies": {
-    "@putdotio/api-client": ">=8.40.0"
+    "@putdotio/api-client": ">=8.46.0"
   },
   "publishConfig": {
     "access": "public"

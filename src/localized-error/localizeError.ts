@@ -1,8 +1,8 @@
 import {
   type IPutioAPIClientError,
-  type IPutioAPIClientErrorData,
   isPutioAPIError,
   isPutioAPIErrorResponse,
+  createMockErrorResponse,
 } from '@putdotio/api-client';
 import { LocalizedError, type LocalizedErrorParams } from './LocalizedError';
 
@@ -13,13 +13,13 @@ export type LocalizeFn<E> = (
 export type APIErrorByStatusCodeLocalizer = {
   kind: 'api_status_code';
   status_code: number;
-  localize: LocalizeFn<IPutioAPIClientError | IPutioAPIClientErrorData>;
+  localize: LocalizeFn<IPutioAPIClientError>;
 };
 
 export type APIErrorByErrorTypeLocalizer = {
   kind: 'api_error_type';
   error_type: string;
-  localize: LocalizeFn<IPutioAPIClientError | IPutioAPIClientErrorData>;
+  localize: LocalizeFn<IPutioAPIClientError>;
 };
 
 export type MatchConditionLocalizer<E> = {
@@ -55,16 +55,15 @@ export const createLocalizeError =
   ): LocalizedError => {
     const localizers = [...scopedLocalizers, ...globalLocalizers];
 
-    // API ERROR
     if (isPutioAPIError(error) || isPutioAPIErrorResponse(error)) {
+      const apiError = isPutioAPIErrorResponse(error)
+        ? createMockErrorResponse(error)
+        : error;
+
       const byErrorType = localizers.find(
         (l): l is APIErrorByErrorTypeLocalizer => {
           if (l.kind === 'api_error_type') {
-            if (isPutioAPIErrorResponse(error)) {
-              return l.error_type === error.error_type;
-            }
-
-            return l.error_type === error.data.error_type;
+            return l.error_type === apiError.data.error_type;
           }
 
           return false;
@@ -73,19 +72,15 @@ export const createLocalizeError =
 
       if (byErrorType) {
         return new LocalizedError({
-          ...byErrorType.localize(error),
-          underlyingError: error,
+          underlyingError: apiError,
+          ...byErrorType.localize(apiError),
         });
       }
 
       const byStatusCode = localizers.find(
         (l): l is APIErrorByStatusCodeLocalizer => {
           if (l.kind === 'api_status_code') {
-            if (isPutioAPIErrorResponse(error)) {
-              return l.status_code === error.status_code;
-            }
-
-            return l.status_code === error.data.status_code;
+            return l.status_code === apiError.data.status_code;
           }
 
           return false;
@@ -93,14 +88,17 @@ export const createLocalizeError =
       );
 
       if (byStatusCode) {
+        const apiError = isPutioAPIErrorResponse(error)
+          ? createMockErrorResponse(error)
+          : error;
+
         return new LocalizedError({
-          ...byStatusCode.localize(error),
-          underlyingError: error,
+          underlyingError: apiError,
+          ...byStatusCode.localize(apiError),
         });
       }
     }
 
-    // MATCH CONDITION
     const matchConditionLocalizer = localizers.find(
       (l): l is MatchConditionLocalizer<ScopedError> => {
         if (l.kind === 'match_condition') {
@@ -113,12 +111,11 @@ export const createLocalizeError =
 
     if (matchConditionLocalizer) {
       return new LocalizedError({
-        ...matchConditionLocalizer.localize(error),
         underlyingError: error,
+        ...matchConditionLocalizer.localize(error),
       });
     }
 
-    // GENERIC
     const genericLocalizer = localizers.find(
       (l): l is GenericErrorLocalizer => {
         if (l.kind === 'generic') {
@@ -131,8 +128,8 @@ export const createLocalizeError =
 
     if (genericLocalizer) {
       return new LocalizedError({
-        ...genericLocalizer.localize(error),
         underlyingError: error,
+        ...genericLocalizer.localize(error),
       });
     }
 
