@@ -1,9 +1,11 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 dayjs.extend(localizedFormat);
 dayjs.extend(relativeTime);
+dayjs.extend(customParseFormat);
 
 export const ensureUTC = (date: unknown = null): string => {
   if (date instanceof Date) {
