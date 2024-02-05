@@ -1,11 +1,9 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 dayjs.extend(localizedFormat);
 dayjs.extend(relativeTime);
-dayjs.extend(customParseFormat);
 
 export const ensureUTC = (date: unknown = null): string => {
   if (date instanceof Date) {
@@ -13,6 +11,10 @@ export const ensureUTC = (date: unknown = null): string => {
   }
 
   if (typeof date === 'string') {
+    if (date.match(/^\d{4}-\d{2}-\d{2}$/)) {
+      return new Date(date).toISOString();
+    }
+
     return date.endsWith('Z') ? date : `${date}Z`;
   }
 

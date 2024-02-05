@@ -30,6 +30,10 @@ describe('date', () => {
     it('handles proper ISO 8601 timestamps', () => {
       expect(ensureUTC('2023-06-03T18:30:03Z')).toBe('2023-06-03T18:30:03Z');
     });
+
+    it('handles YYYY-MM-DD dates', () => {
+      expect(ensureUTC('2023-06-03')).toBe('2023-06-03T00:00:00.000Z');
+    });
   });
 
   describe('toTimeAgo', () => {
