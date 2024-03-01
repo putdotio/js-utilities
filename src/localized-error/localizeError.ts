@@ -6,52 +6,54 @@ import {
 } from '@putdotio/api-client';
 import { LocalizedError, type LocalizedErrorParams } from './LocalizedError';
 
-export type LocalizeFn<E> = (
+export type LocalizeErrorFn<E> = (
   error: E
 ) => Pick<LocalizedErrorParams, 'message' | 'recoverySuggestion' | 'meta'>;
 
 export type APIErrorByStatusCodeLocalizer = {
   kind: 'api_status_code';
   status_code: number;
-  localize: LocalizeFn<IPutioAPIClientError>;
+  localize: LocalizeErrorFn<IPutioAPIClientError>;
 };
 
 export type APIErrorByErrorTypeLocalizer = {
   kind: 'api_error_type';
   error_type: string;
-  localize: LocalizeFn<IPutioAPIClientError>;
+  localize: LocalizeErrorFn<IPutioAPIClientError>;
 };
 
 export type MatchConditionLocalizer<E> = {
   kind: 'match_condition';
   match: (error: E) => boolean;
-  localize: LocalizeFn<E>;
+  localize: LocalizeErrorFn<E>;
 };
 
 export type GenericErrorLocalizer = {
   kind: 'generic';
-  localize: LocalizeFn<unknown>;
+  localize: LocalizeErrorFn<unknown>;
 };
 
-type Localizer<E> =
+export type ErrorLocalizer<E> =
   | APIErrorByStatusCodeLocalizer
   | APIErrorByErrorTypeLocalizer
   | MatchConditionLocalizer<E>
   | GenericErrorLocalizer;
 
-export type ErrorLocalizer = (error: unknown) => LocalizedError;
+export type ErrorLocalizerFn = (error: unknown) => LocalizedError;
 
-export const isErrorLocalizer = (fn: unknown): fn is ErrorLocalizer => {
+export const isErrorLocalizer = (fn: unknown): fn is ErrorLocalizerFn => {
   return (
     typeof fn === 'function' && fn(new Error('test')) instanceof LocalizedError
   );
 };
 
 export const createLocalizeError =
-  <GlobalError extends unknown>(globalLocalizers: Localizer<GlobalError>[]) =>
+  <GlobalError extends unknown>(
+    globalLocalizers: ErrorLocalizer<GlobalError>[]
+  ) =>
   <ScopedError extends GlobalError>(
     error: ScopedError,
-    scopedLocalizers: Localizer<ScopedError>[] = []
+    scopedLocalizers: ErrorLocalizer<ScopedError>[] = []
   ): LocalizedError => {
     const localizers = [...scopedLocalizers, ...globalLocalizers];
 
