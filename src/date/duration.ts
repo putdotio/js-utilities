@@ -56,6 +56,10 @@ export const secondsToReadableDuration = (seconds: number | unknown) => {
       (normalizedSeconds - days * (60 * 60 * 24)) / 60 / 60
     );
 
+    if (hour === 24) {
+      return `${days + 1}${fDay}`;
+    }
+
     return `${days}${fDay}${hour > 0 ? ` ${hour}${fHour}` : ''}`;
   }
 

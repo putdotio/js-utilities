@@ -62,6 +62,10 @@ describe('duration', () => {
       expect(secondsToReadableDuration(444444)).toBe('5d 3h');
     });
 
+    it('handles 24 hours', () => {
+      expect(secondsToReadableDuration(691200)).toBe('8d');
+    });
+
     it('handles decimal duration inputs', () => {
       expect(secondsToReadableDuration(2565.568)).toBe('43m');
     });
