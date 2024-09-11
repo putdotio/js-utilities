@@ -4,6 +4,8 @@ export * from './date/date';
 export * from './date/duration';
 
 export * from './file/file-size';
+export * from './file/file-render-type';
+export * from './file/file-url-provider';
 
 export * from './localized-error/localized-error';
 export * from './localized-error/localize-error';

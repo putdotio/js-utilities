@@ -1,4 +1,4 @@
-import { getFileRenderType, FileRenderType } from './file-render-type';
+import { getFileRenderType } from './file-render-type';
 import type { IFile } from '@putdotio/api-client';
 
 const baseFile: IFile = {
