@@ -1,6 +1,6 @@
-import { toHumanFileSize } from './file';
+import { toHumanFileSize } from './file-size';
 
-describe('files', () => {
+describe('file-size', () => {
   describe('toHumanFileSize', () => {
     it('should convert bytes to human readable format', () => {
       expect(toHumanFileSize(1024)).toBe('1 KB');

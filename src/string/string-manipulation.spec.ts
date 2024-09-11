@@ -1,6 +1,6 @@
-import { dotsToSpaces, truncate, truncateMiddle } from './string';
+import { dotsToSpaces, truncate, truncateMiddle } from './string-manipulation';
 
-describe('string', () => {
+describe('string-manipulation', () => {
   describe('dotsToSpaces', () => {
     it('should replace dots with spaces', () => {
       expect(dotsToSpaces('a.b.c')).toEqual('a b c');

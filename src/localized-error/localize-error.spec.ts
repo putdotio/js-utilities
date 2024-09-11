@@ -1,10 +1,10 @@
 import { createMockErrorResponse } from '@putdotio/api-client';
-import { LocalizedError } from './LocalizedError';
+import { LocalizedError } from './localized-error';
 import {
   GenericErrorLocalizer,
   createLocalizeError,
   isErrorLocalizer,
-} from './localizeError';
+} from './localize-error';
 
 const genericErrorLocalizer: GenericErrorLocalizer = {
   kind: 'generic',
