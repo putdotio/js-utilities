@@ -95,4 +95,12 @@ export class FileURLProvider {
         return null;
     }
   }
+
+  getXSPFURL(file: IFile) {
+    if (getFileRenderType(file) !== 'video') {
+      return null;
+    }
+
+    return `${this.apiURL}/files/${file.id}/xspf?oauth_token=${this.token}`;
+  }
 }

@@ -30,6 +30,22 @@ const mockFileRenderType = (type: string) => {
 };
 
 describe('FileURLProvider', () => {
+  it('should correctly format the apiURL', () => {
+    const customApiURL = 'https://custom-api.example.com';
+    const customToken = 'custom-token';
+    const provider = new FileURLProvider(customApiURL, customToken);
+
+    expect(provider.apiURL).toBe('https://custom-api.example.com/v2');
+  });
+
+  it('should not append /v2 if apiURL already ends with /v2', () => {
+    const apiURLWithV2 = 'https://api.example.com/v2';
+    const customToken = 'another-token';
+    const provider = new FileURLProvider(apiURLWithV2, customToken);
+
+    expect(provider.apiURL).toBe('https://api.example.com/v2');
+  });
+
   describe('getDownloadURL', () => {
     it('should return download URL for file ID', () => {
       const fileId = 123;
@@ -198,6 +214,30 @@ describe('FileURLProvider', () => {
       };
       const url = provider.getStreamURL(file);
       expect(url).toBeNull();
+    });
+  });
+
+  describe('getXSPFURL', () => {
+    it('should return null if file is not a video', () => {
+      mockFileRenderType('audio');
+      const file: IFile = {
+        ...baseFile,
+        file_type: 'AUDIO',
+      };
+      const url = provider.getXSPFURL(file);
+      expect(url).toBeNull();
+    });
+
+    it('should return XSPF URL for video file', () => {
+      mockFileRenderType('video');
+      const file: IFile = {
+        ...baseFile,
+        file_type: 'VIDEO',
+      };
+      const url = provider.getXSPFURL(file);
+      expect(url).toMatchInlineSnapshot(
+        `"https://api.example.com/v2/files/1/xspf?oauth_token=test-token"`
+      );
     });
   });
 });
