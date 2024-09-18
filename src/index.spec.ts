@@ -5,6 +5,7 @@ describe('lib', () => {
     expect(lib).toMatchInlineSnapshot(`
       {
         "ExtendableError": [Function],
+        "FileURLProvider": [Function],
         "LocalizedError": [Function],
         "createLocalizeError": [Function],
         "daysDiff": [Function],
@@ -12,6 +13,7 @@ describe('lib', () => {
         "dotsToSpaces": [Function],
         "ensureUTC": [Function],
         "formatDate": [Function],
+        "getFileRenderType": [Function],
         "getUnixTimestamp": [Function],
         "isErrorLocalizer": [Function],
         "secondsToDuration": [Function],

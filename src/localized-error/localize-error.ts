@@ -4,7 +4,7 @@ import {
   isPutioAPIErrorResponse,
   createMockErrorResponse,
 } from '@putdotio/api-client';
-import { LocalizedError, type LocalizedErrorParams } from './LocalizedError';
+import { LocalizedError, type LocalizedErrorParams } from './localized-error';
 
 export type LocalizeErrorFn<E> = (
   error: E
