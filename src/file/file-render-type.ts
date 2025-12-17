@@ -31,14 +31,6 @@ export const getFileRenderType = (file: IFile): FileRenderType => {
     return 'video';
   }
 
-  if (content_type.startsWith('text') || file_type === 'TEXT') {
-    if (content_type.endsWith('/markdown') || extension === 'md') {
-      return 'text/markdown';
-    }
-
-    return 'text';
-  }
-
   if (content_type.startsWith('image')) {
     return 'image';
   }
@@ -53,6 +45,18 @@ export const getFileRenderType = (file: IFile): FileRenderType => {
 
   if (content_type === 'application/epub+zip') {
     return 'epub';
+  }
+
+  if (
+    content_type.startsWith('text') ||
+    content_type.startsWith('application/x-subrip') ||
+    file_type === 'TEXT'
+  ) {
+    if (content_type.endsWith('/markdown') || extension === 'md') {
+      return 'text/markdown';
+    }
+
+    return 'text';
   }
 
   return 'other';
