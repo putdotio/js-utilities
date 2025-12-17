@@ -31,10 +31,11 @@ export const getFileRenderType = (file: IFile): FileRenderType => {
     return 'video';
   }
 
-  if (content_type.startsWith('text')) {
+  if (content_type.startsWith('text') || file_type === 'TEXT') {
     if (content_type.endsWith('/markdown') || extension === 'md') {
       return 'text/markdown';
     }
+
     return 'text';
   }
 

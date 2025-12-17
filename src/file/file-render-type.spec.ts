@@ -7,8 +7,8 @@ const baseFile: IFile = {
   name: 'test',
   size: 100,
   extension: 'txt',
-  file_type: 'TEXT',
-  content_type: 'text/plain',
+  file_type: 'FILE',
+  content_type: 'unknown',
   crc32: '1234567890',
   created_at: '2021-01-01T00:00:00Z',
 };
